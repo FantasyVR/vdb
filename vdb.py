@@ -20,15 +20,7 @@ RED = (255, 0, 0)
 font = pygame.font.Font(None, 36)
 
 # Create a NumPy array of points (ensure it's integer type for pygame compatibility)
-points_array = np.array([
-    [100, 100],
-    [200, 200],
-    [300, 150],
-    [400, 300],
-    [500, 100]
-], dtype=np.float32)
-
-print(f"points_array: {points_array.shape}") 
+points_array = np.zeros((5,2),dtype=np.float32)
 
 N = 5
 rod_pos = np.zeros((N,2), dtype=np.float32)
@@ -44,14 +36,13 @@ h = 0.01666666
 stiffness = 1.0e8
 
 for i in range(N):
-    rod_pos[i][0] = i * 0.15 + 0.6
+    rod_pos[i][0] = i * 0.15 + 0.5
     rod_pos[i][1] = 0.9
     rod_mass[i] = 1.0
     if i == N-1:
         vertAdjacentEdges[i] = [i-1, -1]
     else:
         vertAdjacentEdges[i] = [i-1, i]
-    print(f"rod_pos: {rod_pos[i]}")
 rod_mass[-1] = 1000
 
 for i in range(N-1):
